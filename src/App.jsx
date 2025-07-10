@@ -1,11 +1,14 @@
 import React from 'react'
+import { BrowserRouter,Routes,Route } from "react-router";
+import CoachDashboard from './pages/CoachDashboard/index.jsx';
 
 const App = () => {
   return (
-    <div className='bg-blue-500 text-white p-4 h-screen'>
-      hello
-
-    </div>
+    <BrowserRouter>
+  <Routes>
+      <Route path="/" element={<CoachDashboard />} />
+    </Routes>
+  </BrowserRouter>
   )
 }
 
