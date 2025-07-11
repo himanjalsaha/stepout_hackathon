@@ -3,7 +3,6 @@ import React, { useRef, useEffect } from "react";
 const VideoPlayer = ({ url, startTime = 20, endTime = 130 }) => {
   const videoRef = useRef(null);
 
-  console.log(url,'CHECK')
 
   useEffect(() => {
     const video = videoRef.current;

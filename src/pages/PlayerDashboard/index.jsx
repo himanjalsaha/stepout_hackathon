@@ -11,11 +11,47 @@ const PlayerDashboard = () => {
   const [feedback,setFeedback] = useState([])
 
   const languages = [
-    { code: 'en', label: 'English' },
-    { code: 'es', label: 'Spanish' },
-    { code: 'fr', label: 'French' },
-    { code: 'pt', label: 'Portuguese' }
-  ];
+  { code: 'en', label: 'English', voice: 'Joanna', language_code: 'en-US' },
+  { code: 'hi', label: 'Hindi', voice: 'Aditi', language_code: 'hi-IN' },
+  { code: 'mr', label: 'Marathi', voice: 'Aditi', language_code: 'hi-IN' }, // Aditi supports Marathi via hi-IN
+  { code: 'es', label: 'Spanish', voice: 'Lucia', language_code: 'es-ES' },
+  { code: 'fr', label: 'French', voice: 'Celine', language_code: 'fr-FR' },
+  { code: 'de', label: 'German', voice: 'Marlene', language_code: 'de-DE' }
+];
+//   const languages = [
+//   { code: 'en-US', label: 'English (US)' },
+//   { code: 'en-GB', label: 'English (UK)' },
+//   { code: 'en-AU', label: 'English (Australia)' },
+//   { code: 'en-IN', label: 'English (India)' },
+//   { code: 'es-US', label: 'Spanish (US)' },
+//   { code: 'es-ES', label: 'Spanish (Spain)' },
+//   { code: 'fr-CA', label: 'French (Canada)' },
+//   { code: 'fr-FR', label: 'French (France)' },
+//   { code: 'pt-BR', label: 'Portuguese (Brazil)' },
+//   { code: 'de-DE', label: 'German' },
+//   { code: 'it-IT', label: 'Italian' },
+//   { code: 'ja-JP', label: 'Japanese' },
+//   { code: 'ko-KR', label: 'Korean' },
+//   { code: 'zh-CN', label: 'Chinese (Mandarin, Simplified)' },
+//   { code: 'hi-IN', label: 'Hindi' },
+//   { code: 'ar-SA', label: 'Arabic (Saudi Arabia)' },
+//   { code: 'ru-RU', label: 'Russian' },
+//   { code: 'tr-TR', label: 'Turkish' },
+//   { code: 'nl-NL', label: 'Dutch' },
+//   { code: 'sv-SE', label: 'Swedish' },
+//   { code: 'th-TH', label: 'Thai' },
+//   { code: 'fa-IR', label: 'Farsi (Persian)' },
+//   { code: 'he-IL', label: 'Hebrew' },
+//   { code: 'id-ID', label: 'Indonesian' },
+//   { code: 'ta-IN', label: 'Tamil' },
+//   { code: 'te-IN', label: 'Telugu' },
+//   { code: 'ml-IN', label: 'Malayalam' },
+//   { code: 'bn-IN', label: 'Bengali' },
+//   { code: 'gu-IN', label: 'Gujarati' },
+//   { code: 'mr-IN', label: 'Marathi' },
+//   { code: 'ur-IN', label: 'Urdu' }
+// ];
+
 
   useEffect(() => {
     const fetchMatchData = async () => {
@@ -91,12 +127,15 @@ const PlayerDashboard = () => {
         ]
 
       try {
-        const response = await fetch('https://afae56099e65.ngrok-free.app/messages');
-        if (response.ok) throw new Error('API error');
+        const response = await fetch('http://13.233.199.154:8000/api/messages/');
+        if (!response.ok) throw new Error('API error');
+      
         const data = await response.json();
-        // setMatchData(data);
-        // setSelectedLanguages(data.feedback.map(() => 'en'));
-        console.log(data,"CHECK DATA")
+        // console.log(data,"DATA")
+         setMatchData(dummyData);
+      setFeedback(data?.messages)
+        setSelectedLanguages(data?.messages.map(() => 'en'));
+        // console.log(data,"CHECK DATA")
       } catch (error) {
         console.warn('Using dummy data due to error:', error);
         setMatchData(dummyData);
@@ -204,7 +243,7 @@ const PlayerDashboard = () => {
                 {matchDetails.scoreA} - {matchDetails.scoreB}
               </div>
             </div>
-            <div className="mt-4">
+            {/* <div className="mt-4">
               <h3 className="font-semibold text-lg mb-2">⚽ Goals Timeline</h3>
               <ul className="space-y-1 text-sm text-gray-300">
                 {matchDetails.goals.map((goal, idx) => (
@@ -213,14 +252,14 @@ const PlayerDashboard = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </div> */}
           </div>
         </div>
 
         {/* Video + Feedback */}
         <div className="flex flex-col md:flex-row gap-6">
           {/* Video */}
-          <div className="md:w-2/3 bg-[#161b22] rounded-2xl p-6 shadow-md">
+          <div className="md:w-1.5/3 bg-[#161b22] rounded-2xl p-6 shadow-md">
             <h2 className="text-2xl font-semibold mb-4 text-center">{title}</h2>
             <div className="aspect-video bg-black rounded-xl overflow-hidden">
               <VideoPlayer url={url} />
