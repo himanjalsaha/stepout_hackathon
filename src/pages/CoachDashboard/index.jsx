@@ -15,7 +15,7 @@ import {
   AlertCircle,
 } from "lucide-react"
 
-const CoachDashboard= () => {
+const PlayerVideoDashboard = () => {
   const [currentVideo, setCurrentVideo] = useState(0)
   const [feedback, setFeedback] = useState("")
   const [rating, setRating] = useState(0)
@@ -148,7 +148,7 @@ const CoachDashboard= () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0f0f1a] to-[#11111d] p-4">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-8xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-600 to-purple-500 rounded-full mb-4 shadow-lg">
@@ -159,7 +159,7 @@ const CoachDashboard= () => {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-8">
           <div className="bg-[#21212e] rounded-xl p-4 shadow-lg border border-gray-800/50">
             <div className="flex items-center justify-between">
               <div>
@@ -210,9 +210,9 @@ const CoachDashboard= () => {
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 xl:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-8">
           {/* Main Player Video */}
-          <div className="xl:col-span-3 bg-[#21212e] rounded-2xl p-6 shadow-2xl border border-gray-800/50">
+          <div className="xl:col-span-2 bg-[#21212e] rounded-2xl p-6 shadow-2xl border border-gray-800/50">
             {/* Player Info Header */}
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center space-x-4">
@@ -315,12 +315,12 @@ const CoachDashboard= () => {
               <User className="mr-3 text-purple-400" size={20} />
               Player Videos
             </h3>
-            <div className="space-y-3 max-h-[600px] overflow-y-auto custom-scrollbar">
+            <div className="space-y-4 max-h-[700px] overflow-y-auto custom-scrollbar">
               {playerVideos.map((player, index) => (
                 <div
                   key={player.id}
                   onClick={() => handleVideoChange(index)}
-                  className={`cursor-pointer p-4 rounded-xl transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 border ${
+                  className={`cursor-pointer p-5 rounded-xl transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 border ${
                     currentVideo === index
                       ? "bg-gradient-to-r from-purple-600/20 to-purple-500/20 border-purple-400/50 shadow-lg shadow-purple-500/20"
                       : "bg-[#1a1a26] hover:bg-[#2a2a3e] border-gray-800/50 hover:border-gray-700/50"
@@ -331,9 +331,9 @@ const CoachDashboard= () => {
                       <img
                         src={player.thumbnail || "/placeholder.svg"}
                         alt={player.playerName}
-                        className="w-16 h-10 object-cover rounded-lg"
+                        className="w-24 h-16 object-cover rounded-lg"
                       />
-                      <div className="absolute -top-1 -right-1 w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
+                      <div className="absolute -top-2 -right-2 w-7 h-7 bg-purple-600 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg">
                         {player.jerseyNumber}
                       </div>
                       {player.hasReview && (
@@ -460,4 +460,4 @@ const CoachDashboard= () => {
   )
 }
 
-export default CoachDashboard
+export default PlayerVideoDashboard
