@@ -10,6 +10,7 @@ const App = () => {
   <Routes>
       <Route path="/" element={<CoachDashboard/>} />
       <Route path="/player-dashboard" element={<PlayerDashboard />} />
+       <Route path="/player-dashboard/:match_id" element={<PlayerDashboard />} />
     </Routes>
   </BrowserRouter>
   )
