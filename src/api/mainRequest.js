@@ -1,0 +1,1 @@
+export const MAIN_URL='https://afae56099e65.ngrok-free.app'
