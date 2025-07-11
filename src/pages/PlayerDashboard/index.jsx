@@ -57,21 +57,21 @@ const PlayerDashboard = () => {
     const fetchMatchData = async () => {
       setLoading(true);
       const dummyData = {
-        title: 'Match Analysis: Stepout FC vs Rivals United',
+        title: 'Match Analysis: Stepout United vs Blue Falcon',
         url: 'https://videos.stepoutplay.com/videos/1716958601945GulfutdvAlDhafra.mp4',
         duration: '90:00',
         playerProfile: {
-          name: 'Rohan Kumar',
+          name: 'Ryan Martinez',
           age: 16,
           position: 'Left Winger',
           avatar: 'https://administrator.the-aiff.com/players_docs/58314-Photo-1643121114.jpg',
-          team: 'Stepout FC U17'
+          team: 'Stepout UNITED'
         },
         matchDetails: {
           date: 'July 10, 2025',
-          teamA: 'Stepout FC',
-          teamB: 'Rivals United',
-          scoreA: 3,
+          teamA: 'Stepout United',
+          teamB: 'Blue Falcons',
+          scoreA: 4,
           scoreB: 2,
           goals: [
             { minute: 12, player: 'John Doe', team: 'Stepout FC' },
