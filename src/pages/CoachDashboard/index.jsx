@@ -14,11 +14,15 @@ import {
   TrendingUp,
   AlertCircle,
 } from "lucide-react"
+import AudioUploadButton from "../../components/AudioUploadButton"
+import VoiceRecordingButton from "../../components/VoiceRecordingbutton"
 
 const PlayerVideoDashboard = () => {
   const [currentVideo, setCurrentVideo] = useState(0)
   const [feedback, setFeedback] = useState("")
   const [rating, setRating] = useState(0)
+const [uploadedFile, setUploadedFile] = useState(null);
+  const [recordedBlob, setRecordedBlob] = useState(null);
 
   const playerVideos = [
     {
@@ -27,7 +31,7 @@ const PlayerVideoDashboard = () => {
       position: "Forward",
       jerseyNumber: 9,
       videoTitle: "vs Arsenal - Match Performance",
-      url: "https://www.w3schools.com/html/mov_bbb.mp4",
+      url: "https://videos.stepoutplay.com/videos/1716958601945GulfutdvAlDhafra.mp4",
       duration: "8:30",
       thumbnail: "https://via.placeholder.com/200x120/4f46e5/ffffff?text=Marcus+%239",
       matchDate: "2024-01-15",
@@ -42,7 +46,7 @@ const PlayerVideoDashboard = () => {
       position: "Midfielder",
       jerseyNumber: 8,
       videoTitle: "Training Session - Passing Drills",
-      url: "https://www.w3schools.com/html/mov_bbb.mp4",
+      url: "https://videos.stepoutplay.com/videos/1716958601945GulfutdvAlDhafra.mp4",
       duration: "12:45",
       thumbnail: "https://via.placeholder.com/200x120/7c3aed/ffffff?text=David+%238",
       matchDate: "2024-01-12",
@@ -72,7 +76,7 @@ const PlayerVideoDashboard = () => {
       position: "Goalkeeper",
       jerseyNumber: 1,
       videoTitle: "Shot Stopping Training",
-      url: "https://www.w3schools.com/html/mov_bbb.mp4",
+      url: "https://youtu.be/9RdVS0HtuTI",
       duration: "15:30",
       thumbnail: "https://via.placeholder.com/200x120/059669/ffffff?text=James+%231",
       matchDate: "2024-01-08",
@@ -427,6 +431,17 @@ const PlayerVideoDashboard = () => {
                   </span>
                 )}
               </div>
+             <AudioUploadButton
+            onFileSelect={setUploadedFile}
+            selectedFile={uploadedFile}
+            onRemoveFile={() => setUploadedFile(null)}
+          />
+
+          <VoiceRecordingButton
+            onRecordingComplete={setRecordedBlob}
+            recordedBlob={recordedBlob}
+            onDeleteRecording={() => setRecordedBlob(null)}
+          />
               <button
                 onClick={handleFeedbackSubmit}
                 disabled={!feedback.trim() || rating === 0}
